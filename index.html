@@ -10,78 +10,28 @@
 
     <style type="text/css">
         .crystal-image {
-            width: 300px;
-            height: 300px;
+            width: 150px; /*300px; */
+            height: 150px; /*300px; */
+			margin-right: 15px;
         }
     </style>
 </head>
 
-
-<!-- 
-### Option One: CrystalsCollector Game (Recommended)
-![Crystal Collector](Images/1-CrystalCollector.jpg)
-1. [Watch the demo](https://youtu.be/yNI0l2FMeCk).
-3. Here's how the app works:
-   * The player wins if their total score matches the random number from the beginning of the game.
-   * The player loses if their score goes above the random number.
-   * The game restarts whenever the player wins or loses.
-     * When the game begins again, the player should see a new random number. Also, all the crystals will have four new hidden values. Of course, the user's score (and score counter) will reset to zero.
-   * The app should show the number of games the player wins and loses. To that end, do not refresh the page as a means to restart the game.
--->
 <body>
-	<h1>Number to Guess: <span id="number-to-guess"></span></h1>
+	<h1>Crystals Collector!</h1>
+	<p>You will be given a random number at the start of the game.<br></p>
+	<p>There are four crystals below. By clicking on a crystal you will add a specific amount of points to your total score.<br></p>
+	<p>You win the game by matching your total score to a random number, you lose the game if your total score goes above the random number.<br></p>
+	<p>The value of each crystal is hidden from you until you click on it.<br></p>
+	<p>Each time when the game starts, the game will change the values of each crystal.<br></p>
+	<p>Number to Guess: <span id="number-to-guess"></span></p>
+	<p>Wins: <span id="wins-txt">0</span></p>
+	<p>Losses: <span id="losses-txt">0</span></p>
+	<p>Your total score is: <span id="counter-txt">0</span></p>
 	<div id="crystals"></div>
 
 	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script type="text/javascript">
-
-	var counter = 0;
-    var targetNumber = getRandomInt(19, 120); //The random number shown at the start of the game should be between 19 - 120.
-	$("#number-to-guess").text(targetNumber);
-	var valueOptions = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]; // Each crystal should have a random hidden value between 1 - 12.
-	
-	for (var i = 0; i < 4; i++) {
-		var imageCrystal = $("<img>");
-		imageCrystal.addClass("crystal-image");
-		imageCrystal.attr("src", "http://cdn.playbuzz.com/cdn/35910209-2844-45c0-b099-f4d82878d54f/00261fda-4062-4096-81fd-8cf96b9034e8.jpg");
-		imageCrystal.attr("data-crystalvalue", getRandValue()); // sets value to randValue
-		$("#crystals").append(imageCrystal);
-	}
-
-	$(".crystal-image").on("click", function () {
-		var crystalValue = ($(this).attr("data-crystalvalue"));
-		crystalValue = parseInt(crystalValue); // Since attributes on HTML elements are strings, we must convert it to an integer before adding to the counter
-		counter += crystalValue;
-
-		// All of the same game win-lose logic applies. So the rest remains unchanged.
-		alert("New score: " + counter);
-
-		if (counter === targetNumber) {
-			alert("You win!");
-			//win++ and reset
-		}
-
-		else if (counter >= targetNumber) {
-			alert("You lose!!");
-			//loss++ and reset
-		}
-
-	});
-
-	function getRandomInt(min, max) {
-		min = Math.ceil(min);
-		max = Math.floor(max);
-		return Math.floor(Math.random() * (max - min)) + min;
-	}
-
-	function getRandValue() { //how to generate unique value so get 1 2 3 4 but not 1 2 2 4?
-		var randValue;
-		return randValue = valueOptions[Math.floor(Math.random() * valueOptions.length)];
-	}
-
-    </script>
-
-    <!--script src="./assets/javascript/game.js"></script-->
+    <script src="./assets/javascript/game.js"></script>
 </body>
 
 </html>
